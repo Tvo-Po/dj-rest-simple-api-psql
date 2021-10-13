@@ -23,7 +23,7 @@ from .settings import DEBUG
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
-    path('api/shop', include('shop.urls')),
+    path('api/v1/', include('shop.urls')),
 ]
 
 if DEBUG:

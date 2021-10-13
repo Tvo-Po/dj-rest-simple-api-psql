@@ -35,15 +35,15 @@ class ShopListSerializer(serializers.ModelSerializer):
 
 class TradeCompanyDetailSerializer(serializers.ModelSerializer):
 
+    shops = ShopListSerializer(read_only=True, many=True)
+
     class Meta:
         model = TradeCompany
-        exclude = ('shops', )
+        fields = ['slug', 'name', 'shops']
 
 
 class TradeCompanyListSerializer(serializers.ModelSerializer):
 
-    shops = TradeCompanyDetailSerializer(read_only=True, many=True)
-
     class Meta:
-        model = Shop
-        fields = '__all__'
+        model = TradeCompany
+        fields = ['slug', 'name']
