@@ -10,10 +10,10 @@ class Product(models.Model):
     weight = models.DecimalField(max_digits=4, decimal_places=2)
     manufacture_date = models.DateField()
     expiration_date = models.DateField()
-    shop = models.ManyToManyField('Shop', blank=True, null=True)
+    shops = models.ManyToManyField('Shop', related_name='products', blank=True, null=True)
 
     def __str__(self):
-        return self.name
+        return f'{self.trade_mark} - {self.name}'
 
     def save(self, *args, **kwargs):
         if self.slug == 'not_change_if_dont_want_custom':
