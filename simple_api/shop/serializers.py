@@ -7,7 +7,7 @@ class ProductDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Product
-        exclude = ('shop', )
+        exclude = ('shops', )
 
 
 class ProductListSerializer(serializers.ModelSerializer):
@@ -19,14 +19,14 @@ class ProductListSerializer(serializers.ModelSerializer):
 
 class ShopDetailSerializer(serializers.ModelSerializer):
 
+    products = ProductListSerializer(read_only=True, many=True)
+
     class Meta:
         model = Shop
-        fields = ['slug', 'trade_company', 'city']
+        fields = ['slug', 'trade_company', 'city', 'products']
 
 
 class ShopListSerializer(serializers.ModelSerializer):
-
-    products = ProductDetailSerializer(read_only=True, many=True)
 
     class Meta:
         model = Shop
